@@ -129,6 +129,6 @@ public class Board {
 		}
 		return data;
 	}
-	private GridData mCurrentGrid;
+	protected GridData mCurrentGrid;
 	private int[] mQ;
 }
