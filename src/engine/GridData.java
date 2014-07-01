@@ -485,7 +485,7 @@ public class GridData implements Cloneable {
 	 * 
 	 * @return next pre-calculated tile
 	 */
-	private int getNextTile() {
+	protected int getNextTile() {
 		return nextTile;
 	}
 

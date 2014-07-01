@@ -1,6 +1,6 @@
 package control;
 
-import RL.Board;
+import engine.Board;
 import RL.RLPolicy;
 import engine.Game;
 import engine.GridData.DIR;
@@ -9,7 +9,7 @@ public class BotController implements GameController {
     private Game game;
 	public BotController(Game game){
 		this.game = game;
-		mInitBoard = new Board(game);
+		mInitBoard = new Board(game.getCurrentGrid());
 		mPolicy = new RLPolicy(mInitBoard);
 		
 		
@@ -17,24 +17,10 @@ public class BotController implements GameController {
 	@Override
 	public DIR getDirection() {
 		// TODO Please input your code here.
-		mPolicy.episodes(new Board(game.getCurrentGrid()));
+		mInitBoard = new Board(game.getCurrentGrid());
+		mPolicy.episodes(mInitBoard);
 		DIR dir = DIR.INVALID;
-		switch (mInitBoard.getAction()) {
-		case 0:
-			dir = DIR.UP;
-			break;
-		case 1:
-			dir = DIR.DOWN;
-			break;
-		case 2:
-			dir = DIR.LEFT;
-			break;
-		case 3:
-			dir = DIR.RIGHT;
-			break;
-		default:
-			break;
-		}
+		dir = Board.Int2Dir(mInitBoard.getAction());
 		return dir;
 	}
 	
